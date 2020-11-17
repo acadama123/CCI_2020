@@ -107,7 +107,7 @@ class SinglyLinkedList:
                 listStr = listStr + " -> "
             curNode = nextNode
         print(listStr)
-
+'''
 # 2 -> 5 -> 9 -> -3 -> 12
 list = SinglyLinkedList()
 list.insert(9,0)
@@ -136,3 +136,4 @@ print(list.delete(0))
 list.printList()
 print(list.delete(0))
 list.printList()
+'''
