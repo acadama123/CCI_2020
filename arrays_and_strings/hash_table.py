@@ -67,14 +67,38 @@ class HashTable:
         else:
             list.insert(newKeyVal)
 
-    def delete(self, key):
-        pass
+    def search(self, key, getLoc=False):
+        hashIdx = self._hash(key)
+        list = self.table[hashIdx]
+        targetKeyVal = KeyValuePair(key, None) # Utilize KeyValuePair's __eq__
+        searchResult = list.search(targetKeyVal, getLoc=True)
+        if searchResult is None:
+            print(f"Did not find the key: {key}.")
+            return None
+        if getLoc:
+            pos = searchResult[1]
+            return (hashIdx, pos)
+        else:
+            foundKeyVal = searchResult[0]
+            return foundKeyVal
 
-    def search(self, key):
-        pass
+    def delete(self, key):
+        searchResult = self.search(key, getLoc=True)
+        if searchResult is None:
+            return None
+        hashIdx, pos = searchResult
+        list = self.table[hashIdx]
+        return list.delete(pos)
 
     def update(self, key, newVal):
-        pass
+        searchResult = self.search(key, getLoc=True)
+        if searchResult is None:
+            return None
+        newKeyVal = KeyValuePair(key, newVal)
+        hashIdx, pos = searchResult
+        list = self.table[hashIdx]
+        list.delete(pos)
+        list.insert(newKeyVal, pos)
 
     def printTable(self):
         for idx in range(self.size):
@@ -91,6 +115,13 @@ table = HashTable()
 table.insert("apple", 204)
 table.insert(239, "Orange")
 table.insert(3921, ["Hash", "Function", "Is", "Difficult", "To", "Create", 420])
+table.printTable()
+print(table.search(3921))
+print(table.delete(3921))
+table.printTable()
+table.delete(22)
+table.insert(239, 11)
+table.update(239, 11)
 table.printTable()
 '''
 kvpair = KeyValuePair("apple", 204)
