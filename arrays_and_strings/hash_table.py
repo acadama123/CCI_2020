@@ -63,8 +63,9 @@ class HashTable:
         newKeyVal = KeyValuePair(key, value)
         list = self.table[hashIdx]
         if list.search(newKeyVal) is not None:
-            raise ValueError("Key already exists in table!")
-        list.insert(newKeyVal)
+            print(f"Key {key} already exists in table.")
+        else:
+            list.insert(newKeyVal)
 
     def delete(self, key):
         pass
