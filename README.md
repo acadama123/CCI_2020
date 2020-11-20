@@ -9,7 +9,7 @@ Goals:
   + Stacks & Queues
   + Heaps
   + Vectors / ArrayLists (DONE)
-  + Hash Tables
+  + Hash Tables (Almost done - Need reworking on readability)
 2. Algorithms:
   + Breadth-First Search
   + Depth-First Search
